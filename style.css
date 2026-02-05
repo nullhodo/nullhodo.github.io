@@ -1,8 +1,8 @@
 body {
     font-family: 'Zen Maru Gothic', sans-serif;
-    padding-left: 1em;
+    padding-left: 3vw;
 }
 
-li {
+li:not(:first-child) {
     line-height: 2;
 }
