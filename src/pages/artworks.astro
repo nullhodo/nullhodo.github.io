@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Artworks - nullhodo</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            .artwork-list {
+                list-style: none;
+                padding: 0;
+            }
+            .artwork-item {
+                margin-bottom: 3rem;
+            }
+            .artwork-image {
+                max-width: 100%;
+                height: auto;
+                max-height: 300px;
+                display: block;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                border: 1px solid #eee;
+            }
+            .navigation {
+                margin-bottom: 2rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Artworks</h2>
+        <div class="navigation">
+            <a href="/">Back to Home</a>
+            <span> | </span>
+            <a
+                href="https://x.com/search?q=from%3A%40nullhodo%20%22%23%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8DProcessing%22%20OR%20%22%23%E3%82%A2%E3%83%B3%E3%83%93%E3%82%B0%E3%83%A9%E3%83%A0%22%20OR%20%22%23p5js%22%20OR%20%22%23generativeart%22%20OR%20%22%23creativecoding%22"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Search all artworks on X</a
+            >
+        </div>
+
+        <span>This page is currently under construction...</span>
+
+        <ul class="artwork-list">
+            <li class="artwork-item">
+                <h3>Golden Ratio Animation</h3>
+                <img src="/assets/artworks/golden-ratio-animation.jpg" alt="Golden Ratio Animation" class="artwork-image" />
+                <p>A looping animation based on the golden spiral and golden rectangle, along with its generator. Created with p5.js.</p>
+                <a href="https://nullhodo.github.io/golden-ratio-animation/" target="_blank" rel="noopener noreferrer">Play</a>
+                <span> | </span>
+                <a href="https://github.com/nullhodo/golden-ratio-animation" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
+            <li class="artwork-item">
+                <h3>Bad Apple on Console</h3>
+                <img src="/assets/artworks/bad-apple-console.jpg" alt="Bad Apple on Console" class="artwork-image" />
+                <p>A Bad Apple!! animation playable in the browser console.</p>
+                <a href="https://www.youtube.com/watch?v=rGLftsGAEf0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+                <span> | </span>
+                <a href="https://github.com/nullhodo/bad-apple-console" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
+            <li class="artwork-item">
+                <h3>Coin Toss</h3>
+                <img src="/assets/artworks/coin-toss.png" alt="Coin Toss" class="artwork-image" />
+                <p>A coin toss simulation. Created with Three.js.</p>
+                <a href="https://nullhodo.github.io/coin-toss/" target="_blank" rel="noopener noreferrer">Play</a>
+                <span> | </span>
+                <a href="https://github.com/nullhodo/coin-toss" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
+        </ul>
+        <a href="/">Back to Home</a>
+    </body>
+</html>
