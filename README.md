@@ -22,3 +22,10 @@ pnpm install
 | `pnpm dev`         | Starts local dev server                |
 | `pnpm build`       | Build the production site to `./dist/` |
 | `pnpm preview`     | Preview the build locally              |
+
+## Image Optimization Specification
+
+Images in the artworks page are optimized using Astro assets and sharp.
+- Location: src/assets/artworks/
+- Aspect ratio: Cropped to 4:3 (centered) using CSS object-fit.
+- Format: Converted to JPEG format with metadata removed.

@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
+import goldenRatioImg from '../assets/artworks/golden-ratio-animation.jpg';
+import badAppleImg from '../assets/artworks/bad-apple-console.jpg';
+import coinTossImg from '../assets/artworks/coin-toss.png';
 ---
 
 <!doctype html>
@@ -7,7 +11,7 @@ import '../styles/global.css';
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Artworks - nullhodo</title>
+        <title>Artworks | nullhodo</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -23,9 +27,12 @@ import '../styles/global.css';
                 margin-bottom: 3rem;
             }
             .artwork-image {
-                max-width: 100%;
+                width: 100%;
+                max-width: 400px;
                 height: auto;
-                max-height: 300px;
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+                object-position: center;
                 display: block;
                 margin-top: 0.5rem;
                 margin-bottom: 0.5rem;
@@ -54,7 +61,7 @@ import '../styles/global.css';
         <ul class="artwork-list">
             <li class="artwork-item">
                 <h3>Golden Ratio Animation</h3>
-                <img src="/assets/artworks/golden-ratio-animation.jpg" alt="Golden Ratio Animation" class="artwork-image" />
+                <Image src={goldenRatioImg} alt="Golden Ratio Animation" width={800} height={600} fit="cover" format="jpeg" class="artwork-image" />
                 <p>A looping animation based on the golden spiral and golden rectangle, along with its generator. Created with p5.js.</p>
                 <a href="https://nullhodo.github.io/golden-ratio-animation/" target="_blank" rel="noopener noreferrer">Play</a>
                 <span> | </span>
@@ -62,7 +69,7 @@ import '../styles/global.css';
             </li>
             <li class="artwork-item">
                 <h3>Bad Apple on Console</h3>
-                <img src="/assets/artworks/bad-apple-console.jpg" alt="Bad Apple on Console" class="artwork-image" />
+                <Image src={badAppleImg} alt="Bad Apple on Console" width={800} height={600} fit="cover" format="jpeg" class="artwork-image" />
                 <p>A Bad Apple!! animation playable in the browser console.</p>
                 <a href="https://www.youtube.com/watch?v=rGLftsGAEf0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
                 <span> | </span>
@@ -70,7 +77,7 @@ import '../styles/global.css';
             </li>
             <li class="artwork-item">
                 <h3>Coin Toss</h3>
-                <img src="/assets/artworks/coin-toss.png" alt="Coin Toss" class="artwork-image" />
+                <Image src={coinTossImg} alt="Coin Toss" width={800} height={600} fit="cover" format="jpeg" class="artwork-image" />
                 <p>A coin toss simulation. Created with Three.js.</p>
                 <a href="https://nullhodo.github.io/coin-toss/" target="_blank" rel="noopener noreferrer">Play</a>
                 <span> | </span>
