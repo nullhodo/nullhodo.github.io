@@ -1,5 +1,10 @@
 https://nullhodo.github.io/
 
+## Page Structure
+
+- top: `src/pages/index.astro`
+- artworks: `/artworks/`
+
 ## Development
 
 This project uses Astro.
@@ -7,13 +12,13 @@ This project uses Astro.
 ### Setup
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Commands
 
-| Command           | Action                                 |
-| :---------------- | :------------------------------------- |
-| `npm run dev`     | Starts local dev server                |
-| `npm run build`   | Build the production site to `./dist/` |
-| `npm run preview` | Preview the build locally              |
+| Command            | Action                                 |
+| :----------------- | :------------------------------------- |
+| `pnpm dev`         | Starts local dev server                |
+| `pnpm build`       | Build the production site to `./dist/` |
+| `pnpm preview`     | Preview the build locally              |
