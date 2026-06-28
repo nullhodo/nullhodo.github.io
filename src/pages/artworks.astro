@@ -51,6 +51,9 @@ const miscImagePaths = Object.entries(miscImages)
                 margin-bottom: 0.5rem;
                 border: 1px solid #eee;
             }
+            .text-block {
+                display: inline-block;
+            }
             .navigation {
                 margin-bottom: 2rem;
             }
@@ -164,7 +167,7 @@ const miscImagePaths = Object.entries(miscImages)
         </style>
     </head>
     <body>
-        <h2>Artworks</h2>
+        <h1>Artworks</h1>
         <div class="navigation">
             <a href="/">Back to Home</a>
             <span> | </span>
@@ -180,25 +183,25 @@ const miscImagePaths = Object.entries(miscImages)
 
         <ul class="artwork-list">
             <li class="artwork-item">
-                <h3>Golden Ratio Animation</h3>
+                <h2>Golden Ratio Animation</h2>
                 <Image src={goldenRatioImg} alt="Golden Ratio Animation" width={800} height={600} fit="cover" format="webp" quality={85} class="artwork-image" />
-                <p>A looping animation based on the golden spiral and golden rectangle, along with its generator. Created with p5.js.</p>
+                <p><span class="text-block">A looping animation based on the golden spiral and golden rectangle, along with its generator.</span> <span class="text-block">Created with p5.js.</span></p>
                 <a href="https://nullhodo.github.io/golden-ratio-animation/" target="_blank" rel="noopener noreferrer">Play</a>
                 <span> | </span>
                 <a href="https://github.com/nullhodo/golden-ratio-animation" target="_blank" rel="noopener noreferrer">GitHub</a>
             </li>
             <li class="artwork-item">
-                <h3>Bad Apple on Console</h3>
+                <h2>Bad Apple on Console</h2>
                 <Image src={badAppleImg} alt="Bad Apple on Console" width={800} height={600} fit="cover" format="webp" quality={85} class="artwork-image" />
-                <p>A Bad Apple!! animation playable in the browser console.</p>
+                <p><span class="text-block">A Bad Apple!! animation playable</span> <span class="text-block">in the browser console.</span></p>
                 <a href="https://www.youtube.com/watch?v=rGLftsGAEf0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
                 <span> | </span>
                 <a href="https://github.com/nullhodo/bad-apple-console" target="_blank" rel="noopener noreferrer">GitHub</a>
             </li>
             <li class="artwork-item">
-                <h3>Coin Toss</h3>
+                <h2>Coin Toss</h2>
                 <Image src={coinTossImg} alt="Coin Toss" width={800} height={600} fit="cover" format="webp" quality={85} class="artwork-image" />
-                <p>A coin toss simulation. Created with Three.js.</p>
+                <p><span class="text-block">A coin toss simulation.</span> <span class="text-block">Created with Three.js.</span></p>
                 <a href="https://nullhodo.github.io/coin-toss/" target="_blank" rel="noopener noreferrer">Play</a>
                 <span> | </span>
                 <a href="https://github.com/nullhodo/coin-toss" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -232,7 +235,7 @@ const miscImagePaths = Object.entries(miscImages)
             </button>
         </dialog>
 
-        <div style="margin-top: 3rem;">
+        <div style="margin-top: 3rem; margin-bottom: 5rem;">
             <a href="/">Back to Home</a>
         </div>
 
