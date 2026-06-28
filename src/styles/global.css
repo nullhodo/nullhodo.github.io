@@ -53,3 +53,8 @@ a:hover {
     outline-offset: 2px;
     border-radius: 4px;
 }
+
+/* 共通レスポンシブ改行ヘルパー */
+.text-block {
+    display: inline-block;
+}
