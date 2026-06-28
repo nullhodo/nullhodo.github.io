@@ -83,7 +83,7 @@ const miscImagePaths = Object.values(miscImages).map(img => img.default);
         <ul class="artwork-list">
             <li class="artwork-item">
                 <h3>Golden Ratio Animation</h3>
-                <Image src={goldenRatioImg} alt="Golden Ratio Animation" width={800} height={600} fit="cover" format="jpeg" class="artwork-image" />
+                <Image src={goldenRatioImg} alt="Golden Ratio Animation" width={800} height={600} fit="cover" format="webp" quality={85} class="artwork-image" />
                 <p>A looping animation based on the golden spiral and golden rectangle, along with its generator. Created with p5.js.</p>
                 <a href="https://nullhodo.github.io/golden-ratio-animation/" target="_blank" rel="noopener noreferrer">Play</a>
                 <span> | </span>
@@ -91,7 +91,7 @@ const miscImagePaths = Object.values(miscImages).map(img => img.default);
             </li>
             <li class="artwork-item">
                 <h3>Bad Apple on Console</h3>
-                <Image src={badAppleImg} alt="Bad Apple on Console" width={800} height={600} fit="cover" format="jpeg" class="artwork-image" />
+                <Image src={badAppleImg} alt="Bad Apple on Console" width={800} height={600} fit="cover" format="webp" quality={85} class="artwork-image" />
                 <p>A Bad Apple!! animation playable in the browser console.</p>
                 <a href="https://www.youtube.com/watch?v=rGLftsGAEf0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
                 <span> | </span>
@@ -99,7 +99,7 @@ const miscImagePaths = Object.values(miscImages).map(img => img.default);
             </li>
             <li class="artwork-item">
                 <h3>Coin Toss</h3>
-                <Image src={coinTossImg} alt="Coin Toss" width={800} height={600} fit="cover" format="jpeg" class="artwork-image" />
+                <Image src={coinTossImg} alt="Coin Toss" width={800} height={600} fit="cover" format="webp" quality={85} class="artwork-image" />
                 <p>A coin toss simulation. Created with Three.js.</p>
                 <a href="https://nullhodo.github.io/coin-toss/" target="_blank" rel="noopener noreferrer">Play</a>
                 <span> | </span>
@@ -114,10 +114,11 @@ const miscImagePaths = Object.values(miscImages).map(img => img.default);
                     <Image
                         src={img}
                         alt={`Generative Art Sketch ${index + 1}`}
-                        width={400}
-                        height={300}
+                        width={800}
+                        height={600}
                         fit="cover"
-                        format="jpeg"
+                        format="webp"
+                        quality={85}
                     />
                 </li>
             ))}
