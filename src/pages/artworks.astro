@@ -46,10 +46,9 @@ const miscImagePaths = Object.entries(miscImages)
                 aspect-ratio: 4 / 3;
                 object-fit: cover;
                 object-position: center;
-                display: block;
                 margin-top: 0.5rem;
                 margin-bottom: 0.5rem;
-                border: 1px solid #eee;
+                border: 1px solid var(--border-color);
             }
             .text-block {
                 display: inline-block;
@@ -72,7 +71,7 @@ const miscImagePaths = Object.entries(miscImages)
                 aspect-ratio: 4 / 3;
                 object-fit: cover;
                 object-position: center;
-                border: 1px solid #eee;
+                border: 1px solid var(--border-color);
                 display: block;
                 cursor: pointer;
                 transition: transform 0.2s, opacity 0.2s;
@@ -82,6 +81,21 @@ const miscImagePaths = Object.entries(miscImages)
             }
             .misc-item img:hover {
                 box-shadow: 0 0 0 2px #444;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .misc-item img {
+                    transition: none;
+                }
+                .misc-item img:hover {
+                    transform: none;
+                }
+                .nav-button {
+                    transition: none;
+                }
+                .nav-button:hover {
+                    transform: translateY(-50%) scale(1);
+                }
             }
             .modal {
                 border: none;
@@ -220,6 +234,7 @@ const miscImagePaths = Object.entries(miscImages)
                         fit="cover"
                         format="webp"
                         quality={85}
+                        tabindex="0"
                     />
                 </li>
             ))}
@@ -264,6 +279,12 @@ const miscImagePaths = Object.entries(miscImages)
                 img.addEventListener('click', () => {
                     updateModalImage(index);
                     modal?.showModal();
+                });
+                img.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        updateModalImage(index);
+                        modal?.showModal();
+                    }
                 });
             });
 

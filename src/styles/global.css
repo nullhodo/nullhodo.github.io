@@ -1,8 +1,55 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #0066cc;
+    --link-hover-color: #004499;
+    --border-color: #eeeeee;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --link-color: #66b3ff;
+        --link-hover-color: #99ccff;
+        --border-color: #333333;
+    }
+}
+
 body {
     font-family: 'Zen Maru Gothic', sans-serif;
     padding-left: 3vw;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
 li:not(:first-child) {
     line-height: 2;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    padding: 0.4rem;
+    margin: -0.4rem;
+    border-radius: 4px;
+    display: inline-block;
+    transition:
+        color 0.2s,
+        background-color 0.2s;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* キーボードナビゲーションの視認性向上 */
+:focus-visible {
+    outline: 3px solid var(--link-color);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
