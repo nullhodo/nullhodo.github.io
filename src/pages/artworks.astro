@@ -105,7 +105,12 @@ const miscImagePaths = Object.entries(miscImages)
                 max-height: 90vh;
                 outline: none;
                 overflow: visible;
+            }
+            .modal-content {
                 position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .modal::backdrop {
                 background-color: rgba(0, 0, 0, 0.85);
@@ -241,13 +246,15 @@ const miscImagePaths = Object.entries(miscImages)
         </ul>
 
         <dialog id="image-modal" class="modal">
-            <button id="prev-modal" class="nav-button prev-button" aria-label="Previous image">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-            <img id="modal-img" src="" alt="Zoomed Sketch" />
-            <button id="next-modal" class="nav-button next-button" aria-label="Next image">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
+            <div class="modal-content">
+                <button id="prev-modal" class="nav-button prev-button" aria-label="Previous image">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <img id="modal-img" src="" alt="Zoomed Sketch" />
+                <button id="next-modal" class="nav-button next-button" aria-label="Next image">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
         </dialog>
 
         <div style="margin-top: 3rem; margin-bottom: 5rem;">
@@ -276,14 +283,22 @@ const miscImagePaths = Object.entries(miscImages)
             };
 
             images.forEach((img, index) => {
-                img.addEventListener('click', () => {
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const scrollX = window.scrollX;
+                    const scrollY = window.scrollY;
                     updateModalImage(index);
                     modal?.showModal();
+                    window.scrollTo(scrollX, scrollY);
                 });
                 img.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const scrollX = window.scrollX;
+                        const scrollY = window.scrollY;
                         updateModalImage(index);
                         modal?.showModal();
+                        window.scrollTo(scrollX, scrollY);
                     }
                 });
             });
