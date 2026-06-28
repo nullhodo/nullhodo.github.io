@@ -7,7 +7,16 @@ import coinTossImg from '../assets/artworks/coin-toss.png';
 
 // Dynamically import all genart-misc images
 const miscImages = import.meta.glob<{ default: ImageMetadata }>('../assets/artworks/genart-misc-*.{png,jpg,jpeg}', { eager: true });
-const miscImagePaths = Object.values(miscImages).map(img => img.default);
+
+// Sort images numerically based on the number in the filename
+const miscImagePaths = Object.entries(miscImages)
+    .map(([path, mod]) => {
+        const match = path.match(/genart-misc-(\d+)\.(png|jpg|jpeg)$/);
+        const num = match ? parseInt(match[1], 10) : 0;
+        return { num, img: mod.default };
+    })
+    .sort((a, b) => a.num - b.num)
+    .map(item => item.img);
 ---
 
 <!doctype html>
@@ -62,6 +71,95 @@ const miscImagePaths = Object.values(miscImages).map(img => img.default);
                 object-position: center;
                 border: 1px solid #eee;
                 display: block;
+                cursor: pointer;
+                transition: transform 0.2s, opacity 0.2s;
+                user-select: none;
+                -webkit-user-select: none;
+                -webkit-user-drag: none;
+            }
+            .misc-item img:hover {
+                box-shadow: 0 0 0 2px #444;
+            }
+            .modal {
+                border: none;
+                padding: 0;
+                background: transparent;
+                max-width: 90vw;
+                max-height: 90vh;
+                outline: none;
+                overflow: visible;
+                position: relative;
+            }
+            .modal::backdrop {
+                background-color: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(4px);
+            }
+            .modal img {
+                max-width: 100%;
+                max-height: 90vh;
+                display: block;
+                margin: 0 auto;
+                border-radius: 4px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                user-select: none;
+                -webkit-user-select: none;
+                -webkit-user-drag: none;
+            }
+            .nav-button {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.25);
+                color: white;
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s, transform 0.2s;
+                z-index: 10;
+                user-select: none;
+                padding: 0;
+            }
+            .nav-button svg {
+                width: 24px;
+                height: 24px;
+                display: block;
+            }
+            .nav-button:hover {
+                background: rgba(255, 255, 255, 0.4);
+                transform: translateY(-50%) scale(1.1);
+            }
+            .prev-button {
+                left: -70px;
+            }
+            .next-button {
+                right: -70px;
+            }
+
+            @media (max-width: 768px) {
+                .prev-button {
+                    left: 10px;
+                }
+                .next-button {
+                    right: 10px;
+                }
+                .nav-button {
+                    background: rgba(0, 0, 0, 0.5);
+                    width: 40px;
+                    height: 40px;
+                }
+                .nav-button svg {
+                    width: 20px;
+                    height: 20px;
+                }
+                .nav-button:hover {
+                    background: rgba(0, 0, 0, 0.7);
+                    transform: translateY(-50%) scale(1);
+                }
             }
         </style>
     </head>
@@ -124,8 +222,83 @@ const miscImagePaths = Object.values(miscImages).map(img => img.default);
             ))}
         </ul>
 
+        <dialog id="image-modal" class="modal">
+            <button id="prev-modal" class="nav-button prev-button" aria-label="Previous image">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <img id="modal-img" src="" alt="Zoomed Sketch" />
+            <button id="next-modal" class="nav-button next-button" aria-label="Next image">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </dialog>
+
         <div style="margin-top: 3rem;">
             <a href="/">Back to Home</a>
         </div>
+
+        <script>
+            const modal = document.getElementById('image-modal') as HTMLDialogElement;
+            const modalImg = document.getElementById('modal-img') as HTMLImageElement;
+            const prevBtn = document.getElementById('prev-modal');
+            const nextBtn = document.getElementById('next-modal');
+            const images = document.querySelectorAll('.misc-item img');
+            let currentIndex = 0;
+
+            const updateModalImage = (index: number) => {
+                const img = images[index];
+                if (img && modalImg) {
+                    const src = img.getAttribute('src');
+                    const alt = img.getAttribute('alt');
+                    if (src) {
+                        modalImg.src = src;
+                        modalImg.alt = alt || 'Zoomed Sketch';
+                        currentIndex = index;
+                    }
+                }
+            };
+
+            images.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    updateModalImage(index);
+                    modal?.showModal();
+                });
+            });
+
+            const showPrev = () => {
+                const nextIdx = (currentIndex - 1 + images.length) % images.length;
+                updateModalImage(nextIdx);
+            };
+
+            const showNext = () => {
+                const nextIdx = (currentIndex + 1) % images.length;
+                updateModalImage(nextIdx);
+            };
+
+            prevBtn?.addEventListener('click', (e) => {
+                e.stopPropagation(); // Avoid triggering backdrop close
+                showPrev();
+            });
+
+            nextBtn?.addEventListener('click', (e) => {
+                e.stopPropagation(); // Avoid triggering backdrop close
+                showNext();
+            });
+
+            modal?.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.close();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (modal?.open) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrev();
+                    } else if (e.key === 'ArrowRight') {
+                        showNext();
+                    }
+                }
+            });
+        </script>
     </body>
 </html>
