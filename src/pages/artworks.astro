@@ -4,6 +4,10 @@ import { Image } from 'astro:assets';
 import goldenRatioImg from '../assets/artworks/golden-ratio-animation.jpg';
 import badAppleImg from '../assets/artworks/bad-apple-console.jpg';
 import coinTossImg from '../assets/artworks/coin-toss.png';
+
+// Dynamically import all genart-misc images
+const miscImages = import.meta.glob<{ default: ImageMetadata }>('../assets/artworks/genart-misc-*.{png,jpg,jpeg}', { eager: true });
+const miscImagePaths = Object.values(miscImages).map(img => img.default);
 ---
 
 <!doctype html>
@@ -40,6 +44,24 @@ import coinTossImg from '../assets/artworks/coin-toss.png';
             }
             .navigation {
                 margin-bottom: 2rem;
+            }
+            .misc-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+                padding: 0;
+                list-style: none;
+                margin-top: 1rem;
+                margin-bottom: 3rem;
+            }
+            .misc-item img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+                object-position: center;
+                border: 1px solid #eee;
+                display: block;
             }
         </style>
     </head>
@@ -84,6 +106,25 @@ import coinTossImg from '../assets/artworks/coin-toss.png';
                 <a href="https://github.com/nullhodo/coin-toss" target="_blank" rel="noopener noreferrer">GitHub</a>
             </li>
         </ul>
-        <a href="/">Back to Home</a>
+
+        <h2>Other Sketches</h2>
+        <ul class="misc-grid">
+            {miscImagePaths.map((img, index) => (
+                <li class="misc-item">
+                    <Image
+                        src={img}
+                        alt={`Generative Art Sketch ${index + 1}`}
+                        width={400}
+                        height={300}
+                        fit="cover"
+                        format="jpeg"
+                    />
+                </li>
+            ))}
+        </ul>
+
+        <div style="margin-top: 3rem;">
+            <a href="/">Back to Home</a>
+        </div>
     </body>
 </html>

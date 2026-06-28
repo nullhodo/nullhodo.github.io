@@ -29,3 +29,4 @@ Images in the artworks page are optimized using Astro assets and sharp.
 - Location: src/assets/artworks/
 - Aspect ratio: Cropped to 4:3 (centered) using CSS object-fit.
 - Format: Converted to JPEG format with metadata removed.
+- Automatic updates: Adding new image files with the pattern genart-misc-*.ext to src/assets/artworks/ will automatically display them in the other sketches gallery without code changes.
